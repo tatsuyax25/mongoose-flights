@@ -1,4 +1,5 @@
 const Flight = require("../models/flight");
+const Ticket = require("../models/ticket")
 
 module.exports = {
     new: newFlight,
@@ -46,4 +47,10 @@ function newFlight(req, res) {
         .toString()
         .padStart(2, '0')}:${dt.getMinutes().toString().padStart(2, '0')}`;
     res.render('flights/new', { destDate });
+}
+
+function deleteFlight(req, res) {
+    Flight.findByIdAndRemove(req.params.id, function(err, flight){
+        res.redirect('/')
+    });
 }
