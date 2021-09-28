@@ -6,10 +6,7 @@ module.exports = {
 
 function create(req, res) {
     Flight.findById(req.params.id, function(err, flightDocument) {
-        if(err){
-            console.log(err)
-            res.send(err)
-        }
+        
         console.log(flightDocument)
         flightDocument.destinations.push(req.body);
 

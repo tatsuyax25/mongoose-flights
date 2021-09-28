@@ -11,42 +11,40 @@ module.exports = {
 
 function index(req, res) {
 
-    Flight.find({}).sort('depart').exec(function (err, flights) {
-        console.log(new Date());
+    Flight.find({}, function (err, flightArray) {
         res.render('flights/index', {
-            flights,
-            currentDate: new Date()
+            title: flights,
+            flightArray
         });
     });
 }
 
 function show(req, res) {
-    Flight.findById(req.params.id, function (err, flight) {
-        Ticket.find({ flight: flight._id }, function (err, tickets) {
-            res.render('flights/show', {
-                flight,
-                // tickets
-            });
-
+    Flight.find({}, function(err, selectedFlight) {
+        console.log(selectedFlight)
+        res.render('flight/show', {
+            title: "Details",
+            selectedFlight
         });
     });
 }
 
 function create(req, res) {
-    if (req.body.departs === '') delete req.body.departs;
-    Flight.create(req.body);
-    console.log(req.body);
-    res.redirect('flights');
+    Flight.create(req.body, function(err, addedFlight) {
+        if(err) {
+            console.log(err);
+            res.redirect('/flights/new');
+        }
+        console.log(addedFlight);
+        res.redirect('/flights');
+    });
 }
 
 function newFlight(req, res) {
-    var newFlight = new Flight();
-    var dt = newFlight.departs;
-    var destDate = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()}T${dt
-        .getHours()
-        .toString()
-        .padStart(2, '0')}:${dt.getMinutes().toString().padStart(2, '0')}`;
-    res.render('flights/new', { destDate });
+    
+    res.render('flights/new', {
+        title: "New Flight"
+    });
 }
 
 function deleteFlight(req, res) {

@@ -1,21 +1,28 @@
-<%- include('../patials/header') %> 
-
-<section id="show-page">
-    <div>Airline:</div>
-    <div><%= flight.airline %></div>
-    <div>Airport</div>
-    <div><%= flight.airport %></div>
-    <div>Flight Number</div>
-    <div><%= flight.flightNo %></div>
-    <div>Departs</div>
-    <div><%= flight.departs %></div>
-</section>
-
-<br/><br />
-<h2>Add Destination</h2>
-<form 
-id="add-destination-form"
-method="POST"
-action="/flights/<%= flight._id %>/destination">
-
-<label></label></form>
+<%- include('../partials/header') %>
+    <h3>
+        <%= selectedFlight.flightNo %>
+    </h3>
+    <h3>Destinations</h3>
+    <form action="/flights/<%= selectedFlight._id %>" method="POST">
+        <label for="airport">
+            <select name="airport" id="airport">
+                <option value="Aus">Aus</option>
+                <option value="Dfw">Dfw</option>
+                <option value="Den">Den</option>
+                <option value="Lax">Lax</option>
+                <option value="San">San</option>
+            </select>
+        </label>
+        <label for="arrival">
+            <input type="date" name="arrival">
+        </label>
+        <input type="submit" value="Add Destination">
+    </form>
+    <ul>
+        <% selectedFlight.destinations.forEach(function(d){ %>
+            <li>
+                <%= d.airport %> on <%= d.arrival %>
+            </li>
+            <% }); %>
+    </ul>
+    <%- include('../partials/footer') %>

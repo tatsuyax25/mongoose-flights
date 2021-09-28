@@ -1,26 +1,18 @@
 <%- include('../partials/header') %>
-<h1>Flight List</h1>
-<table id="list">
-  <thead>
-    <tr>
-      <th>Airline</th>
-      <th>Flight<br>Number</th>
-      <th>Departure<br>Date</th>
-      <th>Flight<br>Details</th>
-      <th>Delete<br>Flight</th>
-  </thead>
-  <tbody>
-    <% flight.forEach(function(f) { %>
-      <tr>
-        <td><%= f.airline %></td>
-        <td><%= f.flightNo %></td>
-        <td><%= f.departureDate %></td>
-        <td><%= f.flightDetails %></td>
-        <td><% f.deleteFlight %></td>
-        <td><a href="/flight/<%= f._id %>">DETAILS</a></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
-  
-<%- include('../partials/footer') %>
+    <ul>
+        <% flightArray.forEach(function(f) { <div>
+            <h2>Flight Number<%= f.flightNo %>
+            </h2>
+            <h3>
+                Airline: <%= f.airline %>
+                    <br>
+                    Leaving: <%= f.airport %>
+                        <br>
+                        Date: <%= f.departs %>
+                            <a href="/flights/<%= f._id %>">Details</a>
+            </h3>
+            </div>
+            }) %>
+    </ul>
+
+    <%- include('../partials/footer') %>
