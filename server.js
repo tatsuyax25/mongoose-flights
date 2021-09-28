@@ -8,6 +8,8 @@ require('./config/database');
 
 var indexRouter = require('./routes/index');
 var flightsRouter = require('./routes/flights');
+var destinationsRouter = require('./routes/destinations');
+var ticketRouter = require('./routes/tickets');
 
 var app = express();
 

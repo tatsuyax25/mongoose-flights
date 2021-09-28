@@ -1,5 +1,6 @@
 const Flight = require("../models/flight");
-const Ticket = require("../models/ticket")
+const Destination = require("../models/flight");
+const Ticket = require("../models/ticket");
 
 module.exports = {
     new: newFlight,
@@ -13,7 +14,7 @@ function index(req, res) {
 
     Flight.find({}, function (err, flightArray) {
         res.render('flights/index', {
-            title: flights,
+            title: "Flights",
             flightArray
         });
     });

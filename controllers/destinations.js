@@ -5,12 +5,12 @@ module.exports = {
 };
 
 function create(req, res) {
-    Flight.findById(req.params.id, function(err, flightDocument) {
+    Flight.findById(req.params.id, function(err, selectedFlight) {
         
-        console.log(flightDocument)
-        flightDocument.destinations.push(req.body);
+        console.log(selectedFlight)
+        selectedFlight.destinations.push(req.body);
 
-        flightDocument.save(function(err){
+        selectedFlight.save(function(err){
 
 
             res.redirect(`/flights/${req.params.id}`);
