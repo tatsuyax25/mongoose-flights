@@ -25,7 +25,7 @@ function show(req, res) {
         Ticket.find({ flight: flight._id }, function (err, tickets) {
             res.render('flights/show', {
                 flight,
-                tickets
+                // tickets
             });
 
         });

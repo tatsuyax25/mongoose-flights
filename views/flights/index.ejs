@@ -1,24 +1,26 @@
-<%- include('../partials/header.ejs') %> >
+<%- include('../partials/header') %>
 <h1>Flight List</h1>
-<table class="table" id="flight-index">
-    <thead>
-            <th scope="col">Airline</th>
-            <th scope="col">Flight Number</th>
-            <th scope="col">Departure Date</th>
-            <th scope="col">Flight Details</th>
-            <th scope="'col">Delete Flight</th>
-    </thead>
-    <tbody>
-        <% flights.forEach(function(f) {
-            let todayDate = new Date()
-            let flightDate = flight.departs
-            console.log(`todays date: ${todayDate}`)
-            console.log(`comparison date: ${flightDate}`)
-            if (todayDate > flightDate) {
-
-            }
-        }) %> 
+<table id="list">
+  <thead>
+    <tr>
+      <th>Airline</th>
+      <th>Flight<br>Number</th>
+      <th>Departure<br>Date</th>
+      <th>Flight<br>Details</th>
+      <th>Delete<br>Flight</th>
+  </thead>
+  <tbody>
+    <% flight.forEach(function(f) { %>
+      <tr>
+        <td><%= f.airline %></td>
+        <td><%= f.flightNo %></td>
+        <td><%= f.departureDate %></td>
+        <td><%= f.flightDetails %></td>
+        <td><% f.deleteFlight %></td>
+        <td><a href="/flight/<%= f._id %>">DETAILS</a></td>
+      </tr>
+      <% }); %>
     </tbody>
-</table>
-
-<%- include('../partials/footer') %> 
+  </table>
+  
+<%- include('../partials/footer') %>
