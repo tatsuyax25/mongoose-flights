@@ -1,17 +1,27 @@
 <%- include('../partials/header') %>
 
-    <h1>New Ticket</h1>
+    <h3>Current Ticketing</h3>
+        <section id="current-tickets">
+            <% if (tickets.length) { %>
+            <% tickets.forEach(function(t) { %>
+                <label>Seat Reserved: </label>
+        <div>
+            <%= t.seat %>
+        </div>
+        <label>Price Paid</label>
+        <div>
+            $ <%= t.price %>
+        </div>
+        <% }); %>
+        <% } else { %>
+        <h4>No Ticketing Information Yet</h4>
+        <% } %>
+        </section>
 
-    <form action="/flights/<%= flightId %>/tickets" method="POST" id="ticket-create">
-        <label>Seat
-            <input name="seat" required pattern="[A-F][1-9]\d?">
-        </label><br>
-        <label>Price
-            <input type="text" name="price">
-        </label><br>
-        <br>
-        <button type="submit" form="ticket-create" class="btn btn-success">Create Ticket</button>
-    </form>
+        <section class="ticket-details">
+            <a href="/flights/<%= flight._id %>/tickets/new">Add Ticket</a>
+        </section>
+            </main>
 
 
     <%- include('../partials/footer') %>
